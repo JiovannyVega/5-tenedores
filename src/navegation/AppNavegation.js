@@ -1,10 +1,10 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Icon } from "react-native-elements";
-import { AccountScreen } from "../screens/AccountScreen";
-import { FavoritesScreen } from "../screens/FavoritesScreen";
-import { RankingScreen } from "../screens/RankingScreen";
-import { RestaurantsScreen } from "../screens/RestaurantsScreen";
-import { SearchScreen } from "../screens/SearchScreen";
+import { AccountStack } from "./AccountStack"
+import { FavoritesStack } from "./FavoritesStack";
+import { RestaurantStack } from "./RestaurantStack"
+import { RankingStack } from "./RankingStack";
+import { SearckStack } from "./SearchStack"
 import { screen } from "../utils";
 
 const Tab = createBottomTabNavigator();
@@ -12,15 +12,36 @@ const Tab = createBottomTabNavigator();
 export function AppNavegation() {
     return (
         <Tab.Navigator screenOptions={({ route }) => ({
+            headerShown: false,
             tabBarActiveTintColor: "#00a680",
             tabBarInactiveTintColor: "#646464",
             tabBarIcon: ({ color, size }) => screenOptions(route, color, size)
         })}>
-            <Tab.Screen name={screen.account.tab} component={AccountScreen} options={{ title: "Cuenta" }} />
-            <Tab.Screen name={screen.favorites.tab} component={FavoritesScreen} options={{ title: "Favoritos" }} />
-            <Tab.Screen name={screen.ranking.tab} component={RankingScreen} options={{ title: "Ranking" }} />
-            <Tab.Screen name={screen.restaurant.tab} component={RestaurantsScreen} options={{ title: "Restaurantes" }} />
-            <Tab.Screen name={screen.search.tab} component={SearchScreen} options={{ title: "Buscar" }} />
+            <Tab.Screen
+                name={screen.account.tab}
+                component={AccountStack}
+                options={{ title: "Cuenta" }}
+            />
+            <Tab.Screen
+                name={screen.favorites.tab}
+                component={FavoritesStack}
+                options={{ title: "Favoritos" }}
+            />
+            <Tab.Screen
+                name={screen.ranking.tab}
+                component={RankingStack}
+                options={{ title: "Ranking" }}
+            />
+            <Tab.Screen
+                name={screen.restaurant.tab}
+                component={RestaurantStack}
+                options={{ title: "Restaurantes" }}
+            />
+            <Tab.Screen
+                name={screen.search.tab}
+                component={SearckStack}
+                options={{ title: "Buscar" }}
+            />
         </Tab.Navigator>
     );
 }

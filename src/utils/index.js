@@ -1,1 +1,1 @@
-export * from "./ScreenName"
+export * from "./screenName";
