@@ -18,9 +18,9 @@ export function AppNavegation() {
             tabBarIcon: ({ color, size }) => screenOptions(route, color, size)
         })}>
             <Tab.Screen
-                name={screen.account.tab}
-                component={AccountStack}
-                options={{ title: "Cuenta" }}
+                name={screen.restaurant.tab}
+                component={RestaurantStack}
+                options={{ title: "Restaurantes" }}
             />
             <Tab.Screen
                 name={screen.favorites.tab}
@@ -33,14 +33,14 @@ export function AppNavegation() {
                 options={{ title: "Ranking" }}
             />
             <Tab.Screen
-                name={screen.restaurant.tab}
-                component={RestaurantStack}
-                options={{ title: "Restaurantes" }}
-            />
-            <Tab.Screen
                 name={screen.search.tab}
                 component={SearckStack}
                 options={{ title: "Buscar" }}
+            />
+            <Tab.Screen
+                name={screen.account.tab}
+                component={AccountStack}
+                options={{ title: "Cuenta" }}
             />
         </Tab.Navigator>
     );
