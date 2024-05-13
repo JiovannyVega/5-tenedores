@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { View } from 'react-native'
 import { Input, Icon, Button } from 'react-native-elements'
 import { useFormik } from "formik"
@@ -6,6 +6,8 @@ import { initialValues, validationSchema } from './RegisterForm.data'
 import { styles } from './RegisterForm.styles'
 
 export function RegisterForm() {
+
+    const [showPassword, setShowPassword] = useState(false)
 
     const formik = useFormik({
         initialValues: initialValues(),
@@ -16,6 +18,8 @@ export function RegisterForm() {
             console.log(formValue)
         }
     })
+
+    const showHiddenPassword = () => setShowPassword(precState => !precState)
 
     return (
         <View style={styles.content}>
@@ -30,8 +34,15 @@ export function RegisterForm() {
                 placeholder='Contraseña'
                 containerStyle={styles.input}
                 password={true}
-                secureTextEntry={true}
-                rightIcon={<Icon type='material-community' name="eye-outline" iconStyle={styles.icon} />}
+                secureTextEntry={showPassword ? false : true}
+                rightIcon={
+                    <Icon
+                        type='material-community'
+                        name={showPassword ? "eye-off-outline" : "eye-outline"}
+                        iconStyle={styles.icon}
+                        onPress={showHiddenPassword}
+                    />
+                }
                 onChangeText={text => formik.setFieldValue("password", text)}
                 errorMessage={formik.errors.password}
             />
@@ -39,8 +50,15 @@ export function RegisterForm() {
                 placeholder='Repetir contraseña'
                 containerStyle={styles.input}
                 password={true}
-                secureTextEntry={true}
-                rightIcon={<Icon type='material-community' name="eye-outline" iconStyle={styles.icon} />}
+                secureTextEntry={showPassword ? false : true}
+                rightIcon={
+                    <Icon
+                        type='material-community'
+                        name={showPassword ? "eye-off-outline" : "eye-outline"}
+                        iconStyle={styles.icon}
+                        onPress={showHiddenPassword}
+                    />
+                }
                 onChangeText={text => formik.setFieldValue("repeatPassword", text)}
                 errorMessage={formik.errors.repeatPassword}
             />
